@@ -1,0 +1,25 @@
+# D2 output files
+*.svg
+*.png
+*.pdf
+
+# Test outputs
+test-outputs/
+output/
+renders/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS files
+Thumbs.db

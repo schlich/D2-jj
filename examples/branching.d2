@@ -1,0 +1,72 @@
+# Branching Example
+# Demonstrates multiple branches diverging from a common ancestor
+# Render with: d2 branching.d2 branching.svg
+
+...@../styles/default-theme.d2
+
+direction: up
+
+# Base commits
+root: {
+  label: "qpvuntsm\nInitial commit"
+  class: commit-immutable
+}
+
+base: {
+  label: "rlvkpnrz\nBase changes"
+  class: commit-immutable
+}
+
+# Main branch commits
+main_commit1: {
+  label: "yostqsxw\nMain feature"
+  class: commit-immutable
+}
+
+main_commit2: {
+  label: "mzvwutvl\nMain updates"
+  class: commit
+}
+
+# Feature branch commits
+feature_commit1: {
+  label: "kpqxpypk\nStart feature"
+  class: commit
+}
+
+feature_commit2: {
+  label: "vruxwmqv\nImplement feature"
+  class: commit
+}
+
+# Relationships
+base -> root
+main_commit1 -> base
+main_commit2 -> main_commit1
+feature_commit1 -> base
+feature_commit2 -> feature_commit1
+
+# Branch pointers
+main: {
+  label: "main"
+  class: branch-main
+}
+main -> main_commit2
+
+feature_x: {
+  label: "feature-x"
+  class: branch-feature
+}
+feature_x -> feature_commit2
+
+# Working copy
+wc: {
+  label: "@"
+  class: working-copy
+}
+wc -> feature_commit2
+
+# Explanation
+explanation: "Two branches diverging from a common base.\nFeature branch is the current working copy." {
+  class: note
+}

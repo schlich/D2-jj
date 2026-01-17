@@ -1,0 +1,81 @@
+# Default Theme for D2-jj Diagrams
+# Include this in your diagrams with: ...@styles/default-theme.d2
+
+# Class definitions for common elements
+classes: {
+  commit: {
+    shape: rectangle
+    style.border-radius: 5
+    style.stroke-width: 2
+    width: 150
+    height: 60
+  }
+  
+  commit-immutable: {
+    shape: rectangle
+    style.border-radius: 5
+    style.stroke-width: 2
+    style.fill: "#E0E0E0"
+    style.font-color: "#424242"
+    width: 150
+    height: 60
+  }
+  
+  commit-conflict: {
+    shape: rectangle
+    style.border-radius: 5
+    style.stroke-width: 3
+    style.stroke: "#F44336"
+    width: 150
+    height: 60
+  }
+  
+  branch-main: {
+    shape: hexagon
+    style.fill: "#4CAF50"
+    style.font-color: "#FFFFFF"
+    style.font-size: 14
+    style.bold: true
+    width: 80
+    height: 40
+  }
+  
+  branch-feature: {
+    shape: hexagon
+    style.fill: "#2196F3"
+    style.font-color: "#FFFFFF"
+    style.font-size: 14
+    style.bold: true
+    width: 80
+    height: 40
+  }
+  
+  working-copy: {
+    shape: circle
+    style.fill: "#FF9800"
+    style.font-color: "#FFFFFF"
+    style.font-size: 18
+    style.bold: true
+    width: 50
+    height: 50
+  }
+  
+  bookmark: {
+    shape: hexagon
+    style.fill: "#9C27B0"
+    style.font-color: "#FFFFFF"
+    style.font-size: 14
+    width: 80
+    height: 40
+  }
+  
+  note: {
+    shape: text
+    style.font-size: 12
+    style.italic: true
+    style.font-color: "#666666"
+  }
+}
+
+# Default layout direction (can be overridden)
+direction: up

@@ -1,0 +1,60 @@
+# Conflict Example
+# Demonstrates conflicted commits in JJ
+# Render with: d2 conflict-scenario.d2 conflict-scenario.svg
+
+...@../styles/default-theme.d2
+
+direction: up
+
+# Base commit
+base: {
+  label: "qpvuntsm\nCommon base"
+  class: commit-immutable
+}
+
+# Two conflicting changes
+change_a: {
+  label: "rlvkpnrz\nEdit file.txt"
+  class: commit-immutable
+}
+
+change_b: {
+  label: "yostqsxw\nEdit file.txt differently"
+  class: commit-immutable
+}
+
+# Conflicted merge attempt
+conflicted: {
+  label: "mzvwutvl\n⚠ CONFLICT\nMerge changes"
+  class: commit-conflict
+}
+
+# Relationships
+change_a -> base
+change_b -> base
+conflicted -> change_a
+conflicted -> change_b
+
+# Working copy at conflicted state
+wc: {
+  label: "@"
+  class: working-copy
+}
+wc -> conflicted
+
+# Explanation
+explanation: "Conflicted commit shown with red border.\nNeeds resolution before continuing work." {
+  class: note
+  style.font-color: "#F44336"
+}
+
+# Resolution path (dashed to show future action)
+resolved: {
+  label: "nkmrtpmo\nResolved conflicts"
+  class: commit
+  style.opacity: 0.5
+}
+resolved -> conflicted: {
+  style.stroke-dash: 5
+  style.opacity: 0.5
+}
