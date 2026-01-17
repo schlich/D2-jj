@@ -35,12 +35,16 @@ jobs:
     - name: Render D2 examples to SVG
       run: |
         set -e
-        for file in examples/*.d2; do
-          if [ -f "$file" ]; then
-            filename=$(basename "$file" .d2)
-            echo "Rendering $file to rendered-examples/${filename}.svg"
-            d2 "$file" "rendered-examples/${filename}.svg"
-          fi
+        shopt -s nullglob
+        files=(examples/*.d2)
+        if [ ${#files[@]} -eq 0 ]; then
+          echo "Error: No .d2 files found in examples directory"
+          exit 1
+        fi
+        for file in "${files[@]}"; do
+          filename=$(basename "$file" .d2)
+          echo "Rendering $file to rendered-examples/${filename}.svg"
+          d2 "$file" "rendered-examples/${filename}.svg"
         done
     
     - name: Upload rendered examples as artifacts
