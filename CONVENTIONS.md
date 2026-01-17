@@ -73,7 +73,7 @@ working_copy: {
 ```
 
 #### Change States
-- **Immutable commits**: Gray fill (`#9E9E9E`)
+- **Immutable commits**: Gray fill (`#E0E0E0`)
 - **Mutable commits**: White/default fill
 - **Conflicted commits**: Red border (`style.stroke: "#F44336"`)
 
@@ -103,7 +103,7 @@ direction: right
 | Working copy | Orange | `#FF9800` | Current working location |
 | Tag/Bookmark | Purple | `#9C27B0` | Named references |
 | Conflict | Red | `#F44336` | Conflicted states |
-| Immutable | Gray | `#9E9E9E` | Pushed/immutable commits |
+| Immutable | Gray | `#E0E0E0` | Pushed/immutable commits |
 
 ### 7. Annotations and Labels
 
