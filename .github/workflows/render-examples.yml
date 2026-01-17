@@ -1,0 +1,48 @@
+name: Render D2 Examples
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'examples/**'
+      - 'styles/**'
+      - '.github/workflows/render-examples.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'examples/**'
+      - 'styles/**'
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Install D2
+      run: |
+        curl -fsSL https://d2lang.com/install.sh | sh -s --
+        sudo mv bin/d2 /usr/local/bin/
+    
+    - name: Create output directory
+      run: mkdir -p rendered-examples
+    
+    - name: Render D2 examples to SVG
+      run: |
+        for file in examples/*.d2; do
+          if [ -f "$file" ]; then
+            filename=$(basename "$file" .d2)
+            echo "Rendering $file to rendered-examples/${filename}.svg"
+            d2 "$file" "rendered-examples/${filename}.svg"
+          fi
+        done
+    
+    - name: Upload rendered examples as artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: rendered-examples
+        path: rendered-examples/*.svg
+        retention-days: 90
