@@ -1,0 +1,97 @@
+# Rebase Example
+# Demonstrates rebasing changes in JJ workflow
+# Render with: d2 rebase-scenario.d2 rebase-scenario.svg
+
+...@../styles/default-theme.d2
+
+direction: up
+
+# Original base
+old_base: {
+  label: "qpvuntsm\nOld base"
+  class: commit-immutable
+}
+
+# Old feature commits (before rebase)
+old_feature1: {
+  label: "rlvkpnrz\n(old) Feature start"
+  class: commit-immutable
+  style.opacity: 0.4
+}
+
+old_feature2: {
+  label: "yostqsxw\n(old) Feature work"
+  class: commit-immutable
+  style.opacity: 0.4
+}
+
+# New base (main has moved forward)
+new_base: {
+  label: "kpqxpypk\nNew main work"
+  class: commit-immutable
+}
+
+# Rebased feature commits (new versions)
+new_feature1: {
+  label: "mzvwutvl\nFeature start"
+  class: commit
+}
+
+new_feature2: {
+  label: "nkmrtpmo\nFeature work"
+  class: commit
+}
+
+# Original relationships (faded)
+old_feature1 -> old_base: {
+  style.opacity: 0.3
+  style.stroke-dash: 5
+}
+old_feature2 -> old_feature1: {
+  style.opacity: 0.3
+  style.stroke-dash: 5
+}
+new_base -> old_base
+
+# New relationships (after rebase)
+new_feature1 -> new_base
+new_feature2 -> new_feature1
+
+# Branch pointers
+main: {
+  label: "main"
+  class: branch-main
+}
+main -> new_base
+
+feature: {
+  label: "feature-x"
+  class: branch-feature
+}
+feature -> new_feature2
+
+# Working copy
+wc: {
+  label: "@"
+  class: working-copy
+}
+wc -> new_feature2
+
+# Explanation
+before_note: "Before rebase: feature based on old_base" {
+  class: note
+  style.opacity: 0.6
+}
+
+after_note: "After rebase: feature rebased onto new main" {
+  class: note
+}
+
+# Show rebase operation conceptually
+rebase_arrow: {
+  shape: text
+  label: "⤻ rebase"
+  style.font-size: 16
+  style.bold: true
+  style.font-color: "#2196F3"
+}

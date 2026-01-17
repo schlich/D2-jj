@@ -1,0 +1,53 @@
+# Linear History Example
+# Demonstrates a simple linear commit history in JJ
+# Render with: d2 linear-history.d2 linear-history.svg
+
+...@../styles/default-theme.d2
+
+# Graph flows upward (newest at bottom)
+direction: up
+
+# Commits in linear history
+qpvuntsm: {
+  label: "qpvuntsm\nInitial commit"
+  class: commit-immutable
+}
+
+rlvkpnrz: {
+  label: "rlvkpnrz\nAdd feature"
+  class: commit-immutable
+}
+
+yostqsxw: {
+  label: "yostqsxw\nFix bug"
+  class: commit-immutable
+}
+
+mzvwutvl: {
+  label: "mzvwutvl\nUpdate docs"
+  class: commit
+}
+
+# Commit relationships (child -> parent)
+rlvkpnrz -> qpvuntsm
+yostqsxw -> rlvkpnrz
+mzvwutvl -> yostqsxw
+
+# Branch pointer
+main: {
+  label: "main"
+  class: branch-main
+}
+main -> mzvwutvl
+
+# Working copy indicator
+wc: {
+  label: "@"
+  class: working-copy
+}
+wc -> mzvwutvl
+
+# Explanation
+explanation: "Linear history with 4 commits.\nWorking copy (@) is at the most recent commit." {
+  class: note
+}

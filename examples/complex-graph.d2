@@ -1,0 +1,134 @@
+# Complex Graph Example
+# Demonstrates a realistic complex JJ repository graph
+# Render with: d2 complex-graph.d2 complex-graph.svg
+
+...@../styles/default-theme.d2
+
+direction: up
+
+# Root
+root: {
+  label: "qpvuntsm\nInitial commit"
+  class: commit-immutable
+}
+
+# Main line development
+m1: {
+  label: "rlvkpnrz\nSetup project"
+  class: commit-immutable
+}
+
+m2: {
+  label: "yostqsxw\nAdd core module"
+  class: commit-immutable
+}
+
+m3: {
+  label: "sqzkyzyy\nMerge feature-a"
+  class: commit-immutable
+}
+
+m4: {
+  label: "pommwwmr\nHotfix"
+  class: commit
+}
+
+# Feature branch A
+fa1: {
+  label: "kpqxpypk\nStart feature A"
+  class: commit-immutable
+}
+
+fa2: {
+  label: "vruxwmqv\nImplement A"
+  class: commit-immutable
+}
+
+# Feature branch B (still in development)
+fb1: {
+  label: "mzvwutvl\nStart feature B"
+  class: commit
+}
+
+fb2: {
+  label: "nkmrtpmo\nWIP: feature B"
+  class: commit
+}
+
+# Bugfix branch
+bf1: {
+  label: "royxmykx\nFix critical bug"
+  class: commit
+}
+
+# Experimental branch
+exp1: {
+  label: "tnwlqtzs\nExperiment"
+  class: commit
+}
+
+# Main line relationships
+m1 -> root
+m2 -> m1
+
+# Feature A relationships
+fa1 -> m1
+fa2 -> fa1
+m3 -> m2
+m3 -> fa2  # Merge feature A
+
+m4 -> m3
+
+# Feature B relationships
+fb1 -> m3
+fb2 -> fb1
+
+# Bugfix relationships
+bf1 -> m4
+
+# Experimental branch
+exp1 -> m2
+
+# Branch pointers
+main: {
+  label: "main"
+  class: branch-main
+}
+main -> m4
+
+feature_b: {
+  label: "feature-b"
+  class: branch-feature
+}
+feature_b -> fb2
+
+bugfix: {
+  label: "bugfix-123"
+  class: branch-feature
+}
+bugfix -> bf1
+
+experimental: {
+  label: "experimental"
+  class: branch-feature
+}
+experimental -> exp1
+
+# Working copy
+wc: {
+  label: "@"
+  class: working-copy
+}
+wc -> bf1
+
+# Bookmarks for important commits
+v1_0: {
+  label: "v1.0"
+  class: bookmark
+}
+v1_0 -> m3
+
+# Explanation
+explanation: "Complex graph with multiple branches,\na merge commit, and various development streams." {
+  class: note
+}

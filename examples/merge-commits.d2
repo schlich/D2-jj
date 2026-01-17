@@ -1,0 +1,78 @@
+# Merge Commits Example
+# Demonstrates merging branches in JJ
+# Render with: d2 merge-commits.d2 merge-commits.svg
+
+...@../styles/default-theme.d2
+
+direction: up
+
+# Base commits
+root: {
+  label: "qpvuntsm\nInitial commit"
+  class: commit-immutable
+}
+
+base: {
+  label: "rlvkpnrz\nCommon ancestor"
+  class: commit-immutable
+}
+
+# Main branch path
+main1: {
+  label: "yostqsxw\nMain work"
+  class: commit-immutable
+}
+
+# Feature branch path
+feature1: {
+  label: "kpqxpypk\nFeature work"
+  class: commit-immutable
+}
+
+feature2: {
+  label: "vruxwmqv\nMore feature work"
+  class: commit-immutable
+}
+
+# Merge commit (has two parents)
+merge: {
+  label: "mzvwutvl\nMerge feature-x"
+  class: commit
+}
+
+# Post-merge commit
+post_merge: {
+  label: "nkmrtpmo\nPost-merge work"
+  class: commit
+}
+
+# Relationships
+base -> root
+main1 -> base
+feature1 -> base
+feature2 -> feature1
+
+# Merge has two parents
+merge -> main1
+merge -> feature2
+
+post_merge -> merge
+
+# Branch pointer
+main: {
+  label: "main"
+  class: branch-main
+}
+main -> post_merge
+
+# Working copy
+wc: {
+  label: "@"
+  class: working-copy
+}
+wc -> post_merge
+
+# Explanation
+explanation: "Merge commit combines two branches.\nNote the two parent relationships converging." {
+  class: note
+}
