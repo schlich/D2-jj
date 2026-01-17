@@ -24,7 +24,7 @@ jobs:
     
     - name: Install D2
       run: |
-        curl -fsSL https://d2lang.com/install.sh | sh -s --
+        curl -fsSL https://d2lang.com/install.sh | sh -s -- --version v0.6.7
         sudo mv bin/d2 /usr/local/bin/
     
     - name: Create output directory
@@ -44,5 +44,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: rendered-examples
-        path: rendered-examples/*.svg
+        path: rendered-examples/
         retention-days: 90
+        if-no-files-found: error
