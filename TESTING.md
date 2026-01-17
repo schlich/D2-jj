@@ -184,37 +184,15 @@ d2 --theme=1 examples/complex-graph.d2 output-theme1.svg
 
 ## Continuous Integration
 
-Example GitHub Actions workflow:
+The repository includes a GitHub Actions workflow that automatically renders all examples:
 
-```yaml
-name: Test D2-jj Examples
+- **Location**: `.github/workflows/render-examples.yml`
+- **Triggers**: On push to main, pull requests, or manual dispatch
+- **Output**: Rendered SVGs available as workflow artifacts
 
-on: [push, pull_request]
+The workflow will automatically test that all examples render successfully on every change to the examples or styles directories.
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Install D2
-        run: |
-          curl -fsSL https://d2lang.com/install.sh | sh -s --
-          
-      - name: Test examples
-        run: |
-          mkdir -p test-outputs
-          for file in examples/*.d2; do
-            echo "Testing $file"
-            d2 "$file" "test-outputs/$(basename "$file" .d2).svg"
-          done
-          
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: rendered-diagrams
-          path: test-outputs/
-```
+You can also run the workflow manually from the Actions tab in GitHub to generate fresh renders of all examples.
 
 ## Reporting Issues
 
